@@ -4,7 +4,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 
 class HolidaysAdapter(private var holidays: List<Holidays>):
     RecyclerView.Adapter<HolidaysAdapter.ViewHolder>() {
@@ -17,7 +16,7 @@ class HolidaysAdapter(private var holidays: List<Holidays>):
             itemView.findViewById<TextView>(R.id.tvTitle).text = holidays.name
             itemView.findViewById<TextView>(R.id.tvFechaFestividad).text = holidays.date.toString()
             itemView.findViewById<TextView>(R.id.tvLocalizacion).text = holidays.locations
-            itemView.findViewById<TextView>(R.id.tvTipoFestividad).text = holidays.primary_type
+            itemView.findViewById<TextView>(R.id.tvTipoFestividad).text = holidays.primaryType
             itemView.findViewById<TextView>(R.id.tvDescripcion).text = holidays.description
         }
     }
