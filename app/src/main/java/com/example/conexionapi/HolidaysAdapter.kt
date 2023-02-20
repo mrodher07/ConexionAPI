@@ -9,16 +9,16 @@ class HolidaysAdapter(private var holidays: List<Holidays>):
     RecyclerView.Adapter<HolidaysAdapter.ViewHolder>() {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
-        fun bind(holidays: Holidays){
+        fun bind(holidays: HolidaysResponse){
             itemView.setOnClickListener{
                 println("item pulsado")
             }
-            itemView.findViewById<TextView>(R.id.tvTitle).text = holidays.name
+            /*itemView.findViewById<TextView>(R.id.tvTitle).text = holidays.name
             itemView.findViewById<TextView>(R.id.tvFechaFestividad).text = holidays.date.toString()
-            itemView.findViewById<TextView>(R.id.tvLocalizacion).text = holidays.locations
-            itemView.findViewById<TextView>(R.id.tvTipoFestividad).text = holidays.primaryType
             itemView.findViewById<TextView>(R.id.tvDescripcion).text = holidays.description
+            */
         }
+
     }
 
     fun setList(lista:MutableList<Holidays>){

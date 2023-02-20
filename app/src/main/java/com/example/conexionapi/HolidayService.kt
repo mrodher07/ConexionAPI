@@ -5,15 +5,10 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface HolidayService {
-    @GET("holidays")
+    @GET("v2/holidays")
     fun getHolidays(
-        @Query("1a14837dd82dc020d405b6cd2d9f99888dd05e75&country=ES&year=2023") apiKey:String,
-        @Query("page") page: Int
-    ) : Call<HolidaysResponse>
-
-    @GET("holidays")
-    fun getVacaciones(
-        @Query("1a14837dd82dc020d405b6cd2d9f99888dd05e75&country=ES&year=2023") apiKey:String,
-        @Query("page") page: Int
+        @Query("api_key") api_key:String,
+        @Query("country") country: String,
+        @Query("year") year: String
     ) : Call<HolidaysResponse>
 }

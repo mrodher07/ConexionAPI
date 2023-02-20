@@ -62,20 +62,22 @@ class MainActivity : AppCompatActivity() {
         layoutManager = LinearLayoutManager(applicationContext)
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://calendarific.com/api/v2/holidays/")
+            .baseUrl("https://calendarific.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         val holidaysService = retrofit.create(HolidayService::class.java)
         binding.tvNo.visibility = View.VISIBLE
-
-        holidaysService.getHolidays("1a14837dd82dc020d405b6cd2d9f99888dd05e75&country=ES&year=2023", totalPages)
+        System.out.println("Ha entrado")
+        holidaysService.getHolidays("1a14837dd82dc020d405b6cd2d9f99888dd05e75", "ES", "2023")
             .enqueue(object: Callback<HolidaysResponse>{
                 override fun onResponse(
                     call: Call<HolidaysResponse>,
                     response: Response<HolidaysResponse>
                 ) {
                     val holidays = response.body()?.holidays
+                    System.out.println(response)
+
                     allHolidays.addAll(holidays!!)
 
                     if (response.isSuccessful){
@@ -119,7 +121,7 @@ class MainActivity : AppCompatActivity() {
                     .build()
 
                 val call = retrofit.create(HolidayService::class.java)
-                    .getHolidays("1a14837dd82dc020d405b6cd2d9f99888dd05e75&country=ES&year=2023", totalPages)
+                    .getHolidays("1a14837dd82dc020d405b6cd2d9f99888dd05e75", "ES", "2023")
                     .enqueue(object: Callback<HolidaysResponse>{
                         override fun onResponse(
                             call: Call<HolidaysResponse>,
@@ -167,10 +169,7 @@ class MainActivity : AppCompatActivity() {
                 val holidaysService = retrofit.create(HolidayService::class.java)
                 val selectedItem = spinner.getItemAtPosition(position) as Int
 
-                holidaysService.getHolidays(
-                    "1a14837dd82dc020d405b6cd2d9f99888dd05e75&country=ES&year=2023",
-                    totalPages
-                )
+                holidaysService.getHolidays("1a14837dd82dc020d405b6cd2d9f99888dd05e75", "ES", "2023")
                     .enqueue(object : Callback<HolidaysResponse> {
                         override fun onResponse(
                             call: Call<HolidaysResponse>,
@@ -220,10 +219,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun cargarTodasHolidays(){
         while (pageNumber <= totalPages){
-            holidaysService.getHolidays(
-                "1a14837dd82dc020d405b6cd2d9f99888dd05e75&country=ES&year=2023",
-                totalPages
-            )
+            holidaysService.getHolidays("1a14837dd82dc020d405b6cd2d9f99888dd05e75", "ES", "2023")
                 .enqueue(object : Callback<HolidaysResponse> {
                     override fun onResponse(
                         call: Call<HolidaysResponse>,
