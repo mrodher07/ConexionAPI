@@ -10,5 +10,5 @@ interface HolidayService {
         @Query("api_key") api_key:String,
         @Query("country") country: String,
         @Query("year") year: String
-    ) : Call<HolidaysResponse>
+    ) : Call<DATA>
 }
